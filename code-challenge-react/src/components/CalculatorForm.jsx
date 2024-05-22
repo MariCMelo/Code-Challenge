@@ -1,13 +1,15 @@
 import { useState } from "react";
 import StyledButton from "./StyledButton";
 import styled from "styled-components";
+import { calculate } from "../utils/calculate";
+
 
 const CalculatorForm = () => {
     const [formData, setFormData] = useState({
-      A: { height: "", length: "", window: "", door: "" },
-      B: { height: "", length: "", window: "", door: "" },
-      C: { height: "", length: "", window: "", door: "" },
-      D: { height: "", length: "", window: "", door: "" }
+      A: { height: 0, length: 0, window: 0, door: 0 },
+      B: { height: 0, length: 0, window: 0, door: 0 },
+      C: { height: 0, length: 0, window: 0, door: 0 },
+      D: { height: 0, length: 0, window: 0, door: 0 }
     });
   
     const handleChange = (e, wall) => {
@@ -24,8 +26,15 @@ const CalculatorForm = () => {
     const handleSubmit = (event) => {
       event.preventDefault();
       console.log("Dados do formulário:", formData);
+      const result = calculate(formData);
+    renderResult(result);
       // Adicione aqui a lógica para processar o envio do formulário
     };
+    const renderResult = (result) => {
+        const resultElement = document.getElementById('result');
+        resultElement.textContent = result;
+    };
+   
   
     return (
         <FormContainer>
@@ -36,6 +45,7 @@ const CalculatorForm = () => {
               <WallForm wall="C" formData={formData} onChange={handleChange} />
               <WallForm wall="D" formData={formData} onChange={handleChange} />
             </FlexContainer>
+            <h3 id="result" />
             <StyledButton type="submit">Enviar</StyledButton>
           </Form>
         </FormContainer>
@@ -54,28 +64,28 @@ const CalculatorForm = () => {
         <label>
           Altura:
           <Input
-            type="text"
+            type="number"
             name="height"
             value={formData[wall].height}
             onChange={(e) => onChange(e, wall)}
           />
           Largura:
           <Input
-            type="text"
+            type="number"
             name="length"
             value={formData[wall].length}
             onChange={(e) => onChange(e, wall)}
           />
           Número de Janelas:
           <Input
-            type="text"
+            type="number"
             name="window"
             value={formData[wall].window}
             onChange={(e) => onChange(e, wall)}
           />
           Número de Portas:
           <Input
-            type="text"
+            type="number"
             name="door"
             value={formData[wall].door}
             onChange={(e) => onChange(e, wall)}
