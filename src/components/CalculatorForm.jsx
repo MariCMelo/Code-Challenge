@@ -25,7 +25,6 @@ const CalculatorForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Dados do formulário:", formData);
     const result = calculate(formData);
     renderResult(result);
   };

@@ -48,7 +48,6 @@ export function calculate(formData) {
 
   return generateResultPhrase(large, medium, small, mini);
 }
-console.log(parseInt(A.door))
 function calculatePaintCans(totalLiters) {
   let largeCans = 0;
   let mediumCans = 0;

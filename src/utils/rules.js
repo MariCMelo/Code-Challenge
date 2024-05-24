@@ -1,8 +1,13 @@
+import Swal from "sweetalert2";
 import { errors } from "../errors/errors";
 
 function throwError(errorType) {
   const errorMessage = errors[errorType].message;
-  alert(errorMessage);
+  Swal.fire({
+    icon: "error",
+    title: "Erro!",
+    text: errorMessage,
+  });
   throw new Error(errorMessage);
 }
 
@@ -22,7 +27,7 @@ export function validateWallArea(wallA, wallB, wallC, wallD) {
   const isValidArea = (area) => area >= WALL_MIN_AREA && area <= WALL_MAX_AREA;
 
   if (![wallA, wallB, wallC, wallD].every(isValidArea)) {
-    throwError('invalidAreaError');
+    throwError("invalidAreaError");
   }
 }
 
@@ -32,15 +37,22 @@ export function validateDoorHeight(formData) {
   const walls = [A, B, C, D];
 
   for (let wall of walls) {
-    if (wall.door >= 1 && wall.height - DOOR_HEIGHT <= MIN_WALL_HEIGHT_FOR_DOOR) {
-      throwError('invalidWallHeightError');
+    if (
+      wall.door >= 1 &&
+      wall.height - DOOR_HEIGHT <= MIN_WALL_HEIGHT_FOR_DOOR
+    ) {
+      throwError("invalidWallHeightError");
     }
   }
 }
 
 // Função para validar a proporção da área de portas e janelas em relação à área total da parede
-export function validateWindowDoorAreaRatio(totalDoors, totalWindows, totalWallArea) {
+export function validateWindowDoorAreaRatio(
+  totalDoors,
+  totalWindows,
+  totalWallArea
+) {
   if (totalDoors + totalWindows >= totalWallArea * MAX_WINDOW_DOOR_AREA_RATIO) {
-    throwError('invalidDoorWindowAreaError');
+    throwError("invalidDoorWindowAreaError");
   }
 }
