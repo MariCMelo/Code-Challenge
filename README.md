@@ -69,4 +69,4 @@ A seguir estão as exceções que podem ser geradas pela aplicação, junto com 
 -   **Mensagem:** A altura das paredes com portas deve ser pelo menos 30 centímetros maior do que a altura da porta.
 
 ## Demo
-https://code-challenge-wheat-alpha.vercel.app/
+https://code-challenge-orcin.vercel.app/
