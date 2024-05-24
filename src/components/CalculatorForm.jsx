@@ -3,6 +3,8 @@ import styled from "styled-components";
 import StyledButton from "./StyledButton";
 import { calculate } from "../utils/calculate";
 import WallForm from "./WallForm";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CalculatorForm = () => {
   const [formData, setFormData] = useState({
@@ -35,18 +37,34 @@ const CalculatorForm = () => {
   };
 
   return (
-    <FormContainer>
-      <Form onSubmit={handleSubmit}>
-        <FlexContainer>
-          <WallForm wall="A" formData={formData} onChange={handleChange} />
-          <WallForm wall="B" formData={formData} onChange={handleChange} />
-          <WallForm wall="C" formData={formData} onChange={handleChange} />
-          <WallForm wall="D" formData={formData} onChange={handleChange} />
-        </FlexContainer>
-        <h3 id="result" />
-        <StyledButton type="submit">Calcular</StyledButton>
-      </Form>
-    </FormContainer>
+    <>
+      <FormContainer>
+        <Form onSubmit={handleSubmit}>
+          <FlexContainer>
+            <WallForm wall="A" formData={formData} onChange={handleChange} />
+            <WallForm wall="B" formData={formData} onChange={handleChange} />
+            <WallForm wall="C" formData={formData} onChange={handleChange} />
+            <WallForm wall="D" formData={formData} onChange={handleChange} />
+          </FlexContainer>
+          <h3 id="result" />
+          <StyledButton type="submit">Calcular</StyledButton>
+        </Form>
+      </FormContainer>
+
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition:Bounce
+      />
+    </>
   );
 };
 
